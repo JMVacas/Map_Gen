@@ -39,6 +39,8 @@ namespace Map_Gen
             if (ArchivoCSV.ShowDialog() == DialogResult.OK)
             {
                 StreamReader Lector = new StreamReader(ArchivoCSV.FileName);
+                Mapa = "";
+                Texto = "";
                 Mapa=Lector.ReadToEnd();
                 Mapa=Mapa.Replace(";", "");
                 Mapa=Mapa.Replace("\n", "");
@@ -64,7 +66,14 @@ namespace Map_Gen
                         }
                         else
                         {
-                            Texto += Nombre_Variable +"[" + (i+1) + "," + (j+1) + "]:= " + Lista_Mapa[i][j] + "; \r\n";
+                            if (Seleccion.SelectedIndex == 1)
+                            {
+                                Texto += Nombre_Variable + "[" + (i + 1) + "," + (j + 1) + "]:= " + Lista_Mapa[i][j] + "; \r\n";
+                            }
+                            else
+                            {
+                                Texto += Nombre_Variable + "[" + (i + 1) + "," + (j + 1) + "]:= " + Lista_Mapa[i][j] + "; \r\n";
+                            }
                         }
                     }
                 }
@@ -82,6 +91,9 @@ namespace Map_Gen
             }
         }
 
-        
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
